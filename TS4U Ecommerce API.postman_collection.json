@@ -1,0 +1,1138 @@
+{
+	"info": {
+		"_postman_id": "c79feda7-7263-4a21-9fa2-8f1700b52805",
+		"name": "TS4U Ecommerce API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23208859"
+	},
+	"item": [
+		{
+			"name": "Feature User Management",
+			"item": [
+				{
+					"name": "User Story Agile ALM: Sign up",
+					"item": [
+						{
+							"name": "Positive Test",
+							"item": [
+								{
+									"name": "As a user, I should be able to sign up by providing email id, name, and a password",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"var jsonData= JSON.parse(responseBody);\r",
+													"\r",
+													"\r",
+													"pm.test(\"As a user, I should be able to sign up by providing email id, name, and a password.\", function () {\r",
+													"    pm.response.to.have.status(400);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response time is less than 200ms\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Content-Type is present\", function () {\r",
+													"    pm.response.to.have.header(\"Content-Type\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Server is present\", function () {\r",
+													"    pm.response.to.have.header(\"Server\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Content-Length is present\", function () {\r",
+													"    pm.response.to.have.header(\"Content-Length\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Date is present\", function () {\r",
+													"    pm.response.to.have.header(\"Date\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Connection is present\", function () {\r",
+													"    pm.response.to.have.header(\"Connection\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"X-Powered-By is present\", function () {\r",
+													"    pm.response.to.have.header(\"X-Powered-By\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"ETag is present\", function () {\r",
+													"    pm.response.to.have.header(\"ETag\");\r",
+													"});\r",
+													"\r",
+													"//Schema Validation\r",
+													"\r",
+													"var schema= {\r",
+													"    \"$schema\": \"https://json-schema.org/draft/2019-09/schema\",\r",
+													"    \"$id\": \"http://example.com/example.json\",\r",
+													"    \"type\": \"object\",\r",
+													"    \"default\": {},\r",
+													"    \"title\": \"Root Schema\",\r",
+													"    \"required\": [\r",
+													"        \"message\"\r",
+													"    ],\r",
+													"    \"properties\": {\r",
+													"        \"message\": {\r",
+													"            \"type\": \"string\",\r",
+													"            \"default\": \"\",\r",
+													"            \"title\": \"The message Schema\",\r",
+													"            \"examples\": [\r",
+													"                \"User already registered\"\r",
+													"            ]\r",
+													"        }\r",
+													"    },\r",
+													"    \"examples\": [{\r",
+													"        \"message\": \"User already registered\"\r",
+													"    }]\r",
+													"}\r",
+													"\r",
+													"var schema = {\r",
+													"    \"items\": {\r",
+													"        \"type\": \"boolean\"\r",
+													"    }\r",
+													"};\r",
+													"\r",
+													"var schema = {\r",
+													"    \"items\": {\r",
+													"        \"type\": \"boolean\"\r",
+													"    }\r",
+													"};\r",
+													"\r",
+													"var data1 = [true, false];\r",
+													"var data2 = [true, 123];\r",
+													"\r",
+													"pm.test('Schema is valid', function () {\r",
+													"    pm.expect(tv4.validate(jsonData, schema)).to.be.true;\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzFkMmI0NzRhMTRjMGI3MDk1ODUyYTgiLCJyb2xlIjoidXNlciIsImVtYWlsIjoibWFoaW44OGtoYW5AZ21haWwuY29tIiwiaWF0IjoxNjYyODU2MTEwLCJleHAiOjE2NjI5NDI1MTB9.XgD7XZCUg-cbZUfc9vo3XPRtIH3tbSNsZG4y5UCKY78\""
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"email\": \"mahin88khan@gmail.com\",\n  \"name\": \"Mahin Khan\",\n  \"password\": \"12345678\"\n}"
+										},
+										"url": {
+											"raw": "https://staging-be-ecom.techserve4u.com/api/user/signup",
+											"protocol": "https",
+											"host": [
+												"staging-be-ecom",
+												"techserve4u",
+												"com"
+											],
+											"path": [
+												"api",
+												"user",
+												"signup"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Negative Test",
+							"item": [
+								{
+									"name": "As a user, I should not be able to use email id that is already registered in order to sign up",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"As a user, I should not be able to use email id that is already registered in order to sign up. I expect 400 code.\", function () {\r",
+													"    pm.response.to.have.status(400);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response time is less than 200ms\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Content-Type is present\", function () {\r",
+													"    pm.response.to.have.header(\"Content-Type\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Server is present\", function () {\r",
+													"    pm.response.to.have.header(\"Server\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Content-Length is present\", function () {\r",
+													"    pm.response.to.have.header(\"Content-Length\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Date is present\", function () {\r",
+													"    pm.response.to.have.header(\"Date\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Connection is present\", function () {\r",
+													"    pm.response.to.have.header(\"Connection\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"X-Powered-By is present\", function () {\r",
+													"    pm.response.to.have.header(\"X-Powered-By\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"ETag is present\", function () {\r",
+													"    pm.response.to.have.header(\"ETag\");\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzFkMmI0NzRhMTRjMGI3MDk1ODUyYTgiLCJyb2xlIjoidXNlciIsImVtYWlsIjoibWFoaW44OGtoYW5AZ21haWwuY29tIiwiaWF0IjoxNjYyODU2MTEwLCJleHAiOjE2NjI5NDI1MTB9.XgD7XZCUg-cbZUfc9vo3XPRtIH3tbSNsZG4y5UCKY78\""
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"email\": \"mahin88khan@gmail.com\",\n  \"name\": \"Mahin Khan\",\n  \"password\": \"12345678\"\n}"
+										},
+										"url": {
+											"raw": "https://staging-be-ecom.techserve4u.com/api/user/signup",
+											"protocol": "https",
+											"host": [
+												"staging-be-ecom",
+												"techserve4u",
+												"com"
+											],
+											"path": [
+												"api",
+												"user",
+												"signup"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "As a user, I should not be able to sign up without email id",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"As a user, I should not be able to sign up without email id. I should get a message to provide my email address.\", function () {\r",
+													"    pm.response.to.have.status(404);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response time is less than 200ms\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Content-Type is present\", function () {\r",
+													"    pm.response.to.have.header(\"Content-Type\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Server is present\", function () {\r",
+													"    pm.response.to.have.header(\"Server\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Content-Length is present\", function () {\r",
+													"    pm.response.to.have.header(\"Content-Length\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Date is present\", function () {\r",
+													"    pm.response.to.have.header(\"Date\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Connection is present\", function () {\r",
+													"    pm.response.to.have.header(\"Connection\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"X-Powered-By is present\", function () {\r",
+													"    pm.response.to.have.header(\"X-Powered-By\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"ETag is present\", function () {\r",
+													"    pm.response.to.have.header(\"ETag\");\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzFkMmI0NzRhMTRjMGI3MDk1ODUyYTgiLCJyb2xlIjoidXNlciIsImVtYWlsIjoibWFoaW44OGtoYW5AZ21haWwuY29tIiwiaWF0IjoxNjYyODU2MTEwLCJleHAiOjE2NjI5NDI1MTB9.XgD7XZCUg-cbZUfc9vo3XPRtIH3tbSNsZG4y5UCKY78\""
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"email\": \"\",\n  \"name\": \"Mahin Khan\",\n  \"password\": \"12345678\"\n}"
+										},
+										"url": {
+											"raw": "https://staging-be-ecom.techserve4u.com/api/user/signup",
+											"protocol": "https",
+											"host": [
+												"staging-be-ecom",
+												"techserve4u",
+												"com"
+											],
+											"path": [
+												"api",
+												"user",
+												"signup"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "As a user, I should not be able to sign up without providing a name",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"As a user, I should not be able to sign up without providing a name. I should get a message to provide my name.\", function () {\r",
+													"    pm.response.to.have.status(404);\r",
+													"});\r",
+													"pm.test(\"Response time is less than 200ms\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Content-Type is present\", function () {\r",
+													"    pm.response.to.have.header(\"Content-Type\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Server is present\", function () {\r",
+													"    pm.response.to.have.header(\"Server\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Content-Length is present\", function () {\r",
+													"    pm.response.to.have.header(\"Content-Length\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Date is present\", function () {\r",
+													"    pm.response.to.have.header(\"Date\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Connection is present\", function () {\r",
+													"    pm.response.to.have.header(\"Connection\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"X-Powered-By is present\", function () {\r",
+													"    pm.response.to.have.header(\"X-Powered-By\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"ETag is present\", function () {\r",
+													"    pm.response.to.have.header(\"ETag\");\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzFkMmI0NzRhMTRjMGI3MDk1ODUyYTgiLCJyb2xlIjoidXNlciIsImVtYWlsIjoibWFoaW44OGtoYW5AZ21haWwuY29tIiwiaWF0IjoxNjYyODU2MTEwLCJleHAiOjE2NjI5NDI1MTB9.XgD7XZCUg-cbZUfc9vo3XPRtIH3tbSNsZG4y5UCKY78\""
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"email\": \"mahin88khan@gmail.com\",\n  \"name\": \"\",\n  \"password\": \"12345678\"\n}"
+										},
+										"url": {
+											"raw": "https://staging-be-ecom.techserve4u.com/api/user/signup",
+											"protocol": "https",
+											"host": [
+												"staging-be-ecom",
+												"techserve4u",
+												"com"
+											],
+											"path": [
+												"api",
+												"user",
+												"signup"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "As a user, I should not be able to sign up without a password",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"As a user, I should not be able to sign up without a password. I should get a message to provide a password.\", function () {\r",
+													"    pm.response.to.have.status(404);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response time is less than 200ms\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Content-Type is present\", function () {\r",
+													"    pm.response.to.have.header(\"Content-Type\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Server is present\", function () {\r",
+													"    pm.response.to.have.header(\"Server\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Content-Length is present\", function () {\r",
+													"    pm.response.to.have.header(\"Content-Length\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Date is present\", function () {\r",
+													"    pm.response.to.have.header(\"Date\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Connection is present\", function () {\r",
+													"    pm.response.to.have.header(\"Connection\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"X-Powered-By is present\", function () {\r",
+													"    pm.response.to.have.header(\"X-Powered-By\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"ETag is present\", function () {\r",
+													"    pm.response.to.have.header(\"ETag\");\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzFkMmI0NzRhMTRjMGI3MDk1ODUyYTgiLCJyb2xlIjoidXNlciIsImVtYWlsIjoibWFoaW44OGtoYW5AZ21haWwuY29tIiwiaWF0IjoxNjYyODU2MTEwLCJleHAiOjE2NjI5NDI1MTB9.XgD7XZCUg-cbZUfc9vo3XPRtIH3tbSNsZG4y5UCKY78\""
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"email\": \"mahin88khan@gmail.com\",\n  \"name\": \"Mahin Khan\",\n  \"password\": \"\"\n}"
+										},
+										"url": {
+											"raw": "https://staging-be-ecom.techserve4u.com/api/user/signup",
+											"protocol": "https",
+											"host": [
+												"staging-be-ecom",
+												"techserve4u",
+												"com"
+											],
+											"path": [
+												"api",
+												"user",
+												"signup"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "As a user, I should not be able to sign up by providing less than 6 chracters password",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"As a user, I should not be able to sign up by providing less than 6 chracters password. I should get a warning messsage to prvide more than 6 characters password.\", function () {\r",
+													"    pm.response.to.have.status(404);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response time is less than 200ms\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Content-Type is present\", function () {\r",
+													"    pm.response.to.have.header(\"Content-Type\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Server is present\", function () {\r",
+													"    pm.response.to.have.header(\"Server\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Content-Length is present\", function () {\r",
+													"    pm.response.to.have.header(\"Content-Length\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Date is present\", function () {\r",
+													"    pm.response.to.have.header(\"Date\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Connection is present\", function () {\r",
+													"    pm.response.to.have.header(\"Connection\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"X-Powered-By is present\", function () {\r",
+													"    pm.response.to.have.header(\"X-Powered-By\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"ETag is present\", function () {\r",
+													"    pm.response.to.have.header(\"ETag\");\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzFkMmI0NzRhMTRjMGI3MDk1ODUyYTgiLCJyb2xlIjoidXNlciIsImVtYWlsIjoibWFoaW44OGtoYW5AZ21haWwuY29tIiwiaWF0IjoxNjYyODU2MTEwLCJleHAiOjE2NjI5NDI1MTB9.XgD7XZCUg-cbZUfc9vo3XPRtIH3tbSNsZG4y5UCKY78\""
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"email\": \"mahin88khan@gmail.com\",\n  \"name\": \"Mahin Khan\",\n  \"password\": \"123\"\n}"
+										},
+										"url": {
+											"raw": "https://staging-be-ecom.techserve4u.com/api/user/signup",
+											"protocol": "https",
+											"host": [
+												"staging-be-ecom",
+												"techserve4u",
+												"com"
+											],
+											"path": [
+												"api",
+												"user",
+												"signup"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "User Story Agile ALM: Sign in",
+					"item": [
+						{
+							"name": "Positive Test",
+							"item": [
+								{
+									"name": "As a user, I should be able to sign with registered email id and password",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"// get the token from response body\r",
+													"\r",
+													"var jsonData= JSON.parse(responseBody);\r",
+													"pm.environment.set(\"capture_Token\",jsonData.token);\r",
+													"\r",
+													"\r",
+													"\r",
+													"\r",
+													"\r",
+													"pm.test(\"As a user, I should be able to sign in with registered email id and password. I expect to get token id for authintication.\", function () {\r",
+													"    pm.response.to.have.status(200);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response time is less than 200ms\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Content-Type is present\", function () {\r",
+													"    pm.response.to.have.header(\"Content-Type\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Server is present\", function () {\r",
+													"    pm.response.to.have.header(\"Server\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Content-Length is present\", function () {\r",
+													"    pm.response.to.have.header(\"Content-Length\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Date is present\", function () {\r",
+													"    pm.response.to.have.header(\"Date\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Connection is present\", function () {\r",
+													"    pm.response.to.have.header(\"Connection\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"X-Powered-By is present\", function () {\r",
+													"    pm.response.to.have.header(\"X-Powered-By\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"ETag is present\", function () {\r",
+													"    pm.response.to.have.header(\"ETag\");\r",
+													"});\r",
+													"\r",
+													"//Schema Validation\r",
+													"\r",
+													"var schema= {\r",
+													"    \"$schema\": \"https://json-schema.org/draft/2019-09/schema\",\r",
+													"    \"$id\": \"http://example.com/example.json\",\r",
+													"    \"type\": \"object\",\r",
+													"    \"default\": {},\r",
+													"    \"title\": \"Root Schema\",\r",
+													"    \"required\": [\r",
+													"        \"token\"\r",
+													"    ],\r",
+													"    \"properties\": {\r",
+													"        \"token\": {\r",
+													"            \"type\": \"string\",\r",
+													"            \"default\": \"\",\r",
+													"            \"title\": \"The token Schema\",\r",
+													"            \"examples\": [\r",
+													"                \"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzFkMmI0NzRhMTRjMGI3MDk1ODUyYTgiLCJyb2xlIjoidXNlciIsImVtYWlsIjoibWFoaW44OGtoYW5AZ21haWwuY29tIiwiaWF0IjoxNjYzNTMwNTI2LCJleHAiOjE2NjM2MTY5MjZ9.hoNypIv9NprBZGT03ZnZdTmrYyIleVNFGJSUxCaUXF4\"\r",
+													"            ]\r",
+													"        }\r",
+													"    },\r",
+													"    \"examples\": [{\r",
+													"        \"token\": \"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzFkMmI0NzRhMTRjMGI3MDk1ODUyYTgiLCJyb2xlIjoidXNlciIsImVtYWlsIjoibWFoaW44OGtoYW5AZ21haWwuY29tIiwiaWF0IjoxNjYzNTMwNTI2LCJleHAiOjE2NjM2MTY5MjZ9.hoNypIv9NprBZGT03ZnZdTmrYyIleVNFGJSUxCaUXF4\"\r",
+													"    }]\r",
+													"}\r",
+													"\r",
+													"var schema = {\r",
+													"    \"items\": {\r",
+													"        \"type\": \"boolean\"\r",
+													"    }\r",
+													"};\r",
+													"\r",
+													"\r",
+													"pm.test('Schema is valid', function () {\r",
+													"    pm.expect(tv4.validate(jsonData, schema)).to.be.true;\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzFkMmI0NzRhMTRjMGI3MDk1ODUyYTgiLCJyb2xlIjoidXNlciIsImVtYWlsIjoibWFoaW44OGtoYW5AZ21haWwuY29tIiwiaWF0IjoxNjYyODU2MTEwLCJleHAiOjE2NjI5NDI1MTB9.XgD7XZCUg-cbZUfc9vo3XPRtIH3tbSNsZG4y5UCKY78\""
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"password\": \"12345678\",\n  \"email\": \"mahin88khan@gmail.com\"\n}"
+										},
+										"url": {
+											"raw": "https://staging-be-ecom.techserve4u.com/api/user/signin",
+											"protocol": "https",
+											"host": [
+												"staging-be-ecom",
+												"techserve4u",
+												"com"
+											],
+											"path": [
+												"api",
+												"user",
+												"signin"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "As a user, I should be able to verify myself with token id",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"As a user, I should be able to verify myself with token id\", function () {\r",
+													"    pm.response.to.have.status(200);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response time is less than 200ms\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Content-Type is present\", function () {\r",
+													"    pm.response.to.have.header(\"Content-Type\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Server is present\", function () {\r",
+													"    pm.response.to.have.header(\"Server\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Content-Length is present\", function () {\r",
+													"    pm.response.to.have.header(\"Content-Length\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Date is present\", function () {\r",
+													"    pm.response.to.have.header(\"Date\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Connection is present\", function () {\r",
+													"    pm.response.to.have.header(\"Connection\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"X-Powered-By is present\", function () {\r",
+													"    pm.response.to.have.header(\"X-Powered-By\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"ETag is present\", function () {\r",
+													"    pm.response.to.have.header(\"ETag\");\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "accept",
+												"value": "application/json"
+											},
+											{
+												"key": "authorization",
+												"value": "{{capture_Token}}"
+											}
+										],
+										"url": {
+											"raw": "https://staging-be-ecom.techserve4u.com/api/user/verify",
+											"protocol": "https",
+											"host": [
+												"staging-be-ecom",
+												"techserve4u",
+												"com"
+											],
+											"path": [
+												"api",
+												"user",
+												"verify"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Negative Test",
+							"item": [
+								{
+									"name": "As a user, I should not be able to sign in with non-registered email id",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"As a user, I should not be able to sign in with non-registered email id. I expect to get code 400\", function () {\r",
+													"    pm.response.to.have.status(400);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response time is less than 200ms\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Content-Type is present\", function () {\r",
+													"    pm.response.to.have.header(\"Content-Type\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Server is present\", function () {\r",
+													"    pm.response.to.have.header(\"Server\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Content-Length is present\", function () {\r",
+													"    pm.response.to.have.header(\"Content-Length\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Date is present\", function () {\r",
+													"    pm.response.to.have.header(\"Date\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Connection is present\", function () {\r",
+													"    pm.response.to.have.header(\"Connection\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"X-Powered-By is present\", function () {\r",
+													"    pm.response.to.have.header(\"X-Powered-By\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"ETag is present\", function () {\r",
+													"    pm.response.to.have.header(\"ETag\");\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzFkMmI0NzRhMTRjMGI3MDk1ODUyYTgiLCJyb2xlIjoidXNlciIsImVtYWlsIjoibWFoaW44OGtoYW5AZ21haWwuY29tIiwiaWF0IjoxNjYyODU2MTEwLCJleHAiOjE2NjI5NDI1MTB9.XgD7XZCUg-cbZUfc9vo3XPRtIH3tbSNsZG4y5UCKY78\""
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"password\": \"12345678\",\n  \"email\": \"mahin88khan@outlook.com\"\n}"
+										},
+										"url": {
+											"raw": "https://staging-be-ecom.techserve4u.com/api/user/signin",
+											"protocol": "https",
+											"host": [
+												"staging-be-ecom",
+												"techserve4u",
+												"com"
+											],
+											"path": [
+												"api",
+												"user",
+												"signin"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "As a user, I should not be able to sign in with a wrong password",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"As a user, I should not be able to sign in with a wrong password. I expect code 400.\", function () {\r",
+													"    pm.response.to.have.status(400);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response time is less than 200ms\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Content-Type is present\", function () {\r",
+													"    pm.response.to.have.header(\"Content-Type\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Server is present\", function () {\r",
+													"    pm.response.to.have.header(\"Server\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Content-Length is present\", function () {\r",
+													"    pm.response.to.have.header(\"Content-Length\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Date is present\", function () {\r",
+													"    pm.response.to.have.header(\"Date\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Connection is present\", function () {\r",
+													"    pm.response.to.have.header(\"Connection\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"X-Powered-By is present\", function () {\r",
+													"    pm.response.to.have.header(\"X-Powered-By\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"ETag is present\", function () {\r",
+													"    pm.response.to.have.header(\"ETag\");\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzFkMmI0NzRhMTRjMGI3MDk1ODUyYTgiLCJyb2xlIjoidXNlciIsImVtYWlsIjoibWFoaW44OGtoYW5AZ21haWwuY29tIiwiaWF0IjoxNjYyODU2MTEwLCJleHAiOjE2NjI5NDI1MTB9.XgD7XZCUg-cbZUfc9vo3XPRtIH3tbSNsZG4y5UCKY78\""
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"password\": \"1154678\",\n  \"email\": \"mahin88khan@gmail.com\"\n}"
+										},
+										"url": {
+											"raw": "https://staging-be-ecom.techserve4u.com/api/user/signin",
+											"protocol": "https",
+											"host": [
+												"staging-be-ecom",
+												"techserve4u",
+												"com"
+											],
+											"path": [
+												"api",
+												"user",
+												"signin"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "As a user, I should not be able to sign in by leaving email id field blank",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"As a user, I should not be able to sign in by leaving email id field blank. I expect code 404\", function () {\r",
+													"    pm.response.to.have.status(404);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response time is less than 200ms\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Content-Type is present\", function () {\r",
+													"    pm.response.to.have.header(\"Content-Type\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Server is present\", function () {\r",
+													"    pm.response.to.have.header(\"Server\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Content-Length is present\", function () {\r",
+													"    pm.response.to.have.header(\"Content-Length\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Date is present\", function () {\r",
+													"    pm.response.to.have.header(\"Date\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Connection is present\", function () {\r",
+													"    pm.response.to.have.header(\"Connection\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"X-Powered-By is present\", function () {\r",
+													"    pm.response.to.have.header(\"X-Powered-By\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"ETag is present\", function () {\r",
+													"    pm.response.to.have.header(\"ETag\");\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzFkMmI0NzRhMTRjMGI3MDk1ODUyYTgiLCJyb2xlIjoidXNlciIsImVtYWlsIjoibWFoaW44OGtoYW5AZ21haWwuY29tIiwiaWF0IjoxNjYyODU2MTEwLCJleHAiOjE2NjI5NDI1MTB9.XgD7XZCUg-cbZUfc9vo3XPRtIH3tbSNsZG4y5UCKY78\""
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"password\": \"12345678\",\n  \"email\": \"\"\n}"
+										},
+										"url": {
+											"raw": "https://staging-be-ecom.techserve4u.com/api/user/signin",
+											"protocol": "https",
+											"host": [
+												"staging-be-ecom",
+												"techserve4u",
+												"com"
+											],
+											"path": [
+												"api",
+												"user",
+												"signin"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "As a user, I should not be able to sign in by leaving password field blank",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"As a user, I should not be able to sign in by leaving password field blank. I expect code 404\", function () {\r",
+													"    pm.response.to.have.status(404);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response time is less than 200ms\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Content-Type is present\", function () {\r",
+													"    pm.response.to.have.header(\"Content-Type\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Server is present\", function () {\r",
+													"    pm.response.to.have.header(\"Server\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Content-Length is present\", function () {\r",
+													"    pm.response.to.have.header(\"Content-Length\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Date is present\", function () {\r",
+													"    pm.response.to.have.header(\"Date\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Connection is present\", function () {\r",
+													"    pm.response.to.have.header(\"Connection\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"X-Powered-By is present\", function () {\r",
+													"    pm.response.to.have.header(\"X-Powered-By\");\r",
+													"});\r",
+													"\r",
+													"pm.test(\"ETag is present\", function () {\r",
+													"    pm.response.to.have.header(\"ETag\");\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzFkMmI0NzRhMTRjMGI3MDk1ODUyYTgiLCJyb2xlIjoidXNlciIsImVtYWlsIjoibWFoaW44OGtoYW5AZ21haWwuY29tIiwiaWF0IjoxNjYyODU2MTEwLCJleHAiOjE2NjI5NDI1MTB9.XgD7XZCUg-cbZUfc9vo3XPRtIH3tbSNsZG4y5UCKY78\""
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"password\": \"\",\n  \"email\": \"mahin88khan@gmail.com\"\n}"
+										},
+										"url": {
+											"raw": "https://staging-be-ecom.techserve4u.com/api/user/signin",
+											"protocol": "https",
+											"host": [
+												"staging-be-ecom",
+												"techserve4u",
+												"com"
+											],
+											"path": [
+												"api",
+												"user",
+												"signin"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}
